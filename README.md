@@ -1,5 +1,4 @@
 # Summarizer
-https://drive.google.com/file/d/1u3pX4S5dj_5CdpMy9sIcIe9D7aSPkujA/view?usp=sharing
 * Run cloab notebook if you have OpenAi API key
 * https://drive.google.com/file/d/1u3pX4S5dj_5CdpMy9sIcIe9D7aSPkujA/view?usp=sharing
 ## Description
