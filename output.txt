@@ -1,0 +1,96 @@
+When you ask the large language model a question,
+it is important that it retrieves
+the most relevant information to answer it.
+This is otherwise known as retrieval augmented generation.
+For example, when you ask
+Chatchapiti what the name of your dog is,
+it has no clue.
+But if you feed it the data that is
+in stored in your vector database,
+and maybe you specify that Erica has a dog and her name is Bowen,
+Chatchapiti is able to retrieve
+that relevant context and properly answer your question.
+In this video, I'll go over how you can
+chunk your text data to ensure that the language model is one,
+receiving the most relevant information,
+maybe instead of feeding it the whole PDF document,
+you feed it by elements,
+which I have a visual for,
+and then two, you don't want to go over the context window,
+and this is dependent on which model that you are using.
+Starting with the text splitter.
+So what this does is it takes the PDF document,
+which we have here on the left-hand side,
+and it takes the chunks depending on the model
+or the chunk size that you defined.
+So for example, GPT 3.5 Turbo 16K has a 16,000 token window,
+but other models have either a smaller or larger window size.
+So just what this is doing is just splitting up the text
+once it hits that limit,
+and then boom, we have chunk one, which is the blue text,
+and then it moves right on to the green window,
+which is the next chunk.
+The rolling window complements the text splitter extremely well,
+and this is because once chunk one is finished,
+chunk two will begin with a few tokens or characters
+that is included in chunk one.
+So in this example, you can see the blue text
+from this document is the beginning or the start of chunk two,
+and this is very important in documents
+where the second sentence doesn't make sense
+because it doesn't have the information from sentence one.
+Lama index, Lang chain, and Haystack,
+they all three have this implemented in their frameworks,
+and at the end of this video,
+I'll share it with you with the link to the documentation
+so you can test this out for yourself.
+Moving on to how you would chunk PDF documents.
+So previously, Chukrin I partnered up
+on creating a demo for unstructured.
+So what we did was we ingested PDF documents,
+which were two research papers,
+and then we chunked it by the elements,
+which unstructured has.
+And if you haven't used unstructured before,
+I highly recommend checking it out along with Lama index.
+So what it is doing is it takes the PDF heading.
+So in this example, I have the abstract,
+introduction, and related work.
+So each section will have its own chunk.
+And this is very important when making queries
+that are specific to title.
+So this is that kind of semantic region of searching.
+And maybe you'd have like the abstract property,
+introduction, property, et cetera.
+And this is one way to make sure
+that you have extremely relevant information.
+If you're interested in using unstructured
+with Lama index, so if you start typing in unstructured,
+you can find the file loader here.
+And this is where you can ingest TXT files,
+doc, PowerPoint, JPEG, all of it.
+Then moving on to the Lama index node parser.
+So this is where you would define that chunk size
+that I talked about, and then also the chunk overlap.
+So with this chunk overlap of 20 tokens,
+it is taking the 20 tokens from the previous chunk
+into the following chunk.
+And this is a lane chain documentation
+on where they have their text splitters.
+So they have, I believe, code on how to do this.
+And maybe if you want to split the text by the new lines
+or also the chunk overlap and the chunk size as well.
+And then ending with haystack.
+They have the chunk size,
+and then again the split overlap.
+So you can check that out.
+And then I want to end this video
+with recommending you join the Arise workshop
+that I will be hosting along with Aman from Arise
+and Ronnie from Unstructured.
+We will be exploring the chunking techniques
+and re-ranking for enhancing your retrieval
+and the results in your FAG application.
+I hope you guys are able to join.
+And I'll see you next time.
+Bye.

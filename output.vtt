@@ -1,0 +1,290 @@
+WEBVTT
+
+00:00.000 --> 00:02.720
+When you ask the large language model a question,
+
+00:02.720 --> 00:04.520
+it is important that it retrieves
+
+00:04.520 --> 00:07.320
+the most relevant information to answer it.
+
+00:07.320 --> 00:11.080
+This is otherwise known as retrieval augmented generation.
+
+00:11.080 --> 00:12.480
+For example, when you ask
+
+00:12.480 --> 00:14.640
+Chatchapiti what the name of your dog is,
+
+00:14.640 --> 00:16.200
+it has no clue.
+
+00:16.200 --> 00:18.400
+But if you feed it the data that is
+
+00:18.400 --> 00:20.520
+in stored in your vector database,
+
+00:20.520 --> 00:25.160
+and maybe you specify that Erica has a dog and her name is Bowen,
+
+00:25.160 --> 00:27.200
+Chatchapiti is able to retrieve
+
+00:27.200 --> 00:30.320
+that relevant context and properly answer your question.
+
+00:30.320 --> 00:32.520
+In this video, I'll go over how you can
+
+00:32.520 --> 00:37.280
+chunk your text data to ensure that the language model is one,
+
+00:37.280 --> 00:40.280
+receiving the most relevant information,
+
+00:40.280 --> 00:43.240
+maybe instead of feeding it the whole PDF document,
+
+00:43.240 --> 00:44.760
+you feed it by elements,
+
+00:44.760 --> 00:46.240
+which I have a visual for,
+
+00:46.240 --> 00:49.520
+and then two, you don't want to go over the context window,
+
+00:49.520 --> 00:52.520
+and this is dependent on which model that you are using.
+
+00:52.520 --> 00:54.160
+Starting with the text splitter.
+
+00:54.200 --> 00:57.240
+So what this does is it takes the PDF document,
+
+00:57.240 --> 00:59.720
+which we have here on the left-hand side,
+
+00:59.720 --> 01:03.400
+and it takes the chunks depending on the model
+
+01:03.400 --> 01:05.440
+or the chunk size that you defined.
+
+01:05.440 --> 01:12.120
+So for example, GPT 3.5 Turbo 16K has a 16,000 token window,
+
+01:12.120 --> 01:16.840
+but other models have either a smaller or larger window size.
+
+01:16.840 --> 01:19.640
+So just what this is doing is just splitting up the text
+
+01:19.640 --> 01:21.040
+once it hits that limit,
+
+01:21.040 --> 01:24.720
+and then boom, we have chunk one, which is the blue text,
+
+01:24.720 --> 01:28.320
+and then it moves right on to the green window,
+
+01:28.320 --> 01:30.000
+which is the next chunk.
+
+01:30.000 --> 01:33.960
+The rolling window complements the text splitter extremely well,
+
+01:33.960 --> 01:37.040
+and this is because once chunk one is finished,
+
+01:37.040 --> 01:41.400
+chunk two will begin with a few tokens or characters
+
+01:41.400 --> 01:43.680
+that is included in chunk one.
+
+01:43.680 --> 01:46.800
+So in this example, you can see the blue text
+
+01:46.840 --> 01:51.560
+from this document is the beginning or the start of chunk two,
+
+01:51.560 --> 01:54.040
+and this is very important in documents
+
+01:54.040 --> 01:57.200
+where the second sentence doesn't make sense
+
+01:57.200 --> 02:00.840
+because it doesn't have the information from sentence one.
+
+02:00.840 --> 02:04.000
+Lama index, Lang chain, and Haystack,
+
+02:04.000 --> 02:07.400
+they all three have this implemented in their frameworks,
+
+02:07.400 --> 02:08.680
+and at the end of this video,
+
+02:08.680 --> 02:11.560
+I'll share it with you with the link to the documentation
+
+02:11.560 --> 02:13.000
+so you can test this out for yourself.
+
+02:13.000 --> 02:15.840
+Moving on to how you would chunk PDF documents.
+
+02:15.880 --> 02:18.440
+So previously, Chukrin I partnered up
+
+02:18.440 --> 02:20.800
+on creating a demo for unstructured.
+
+02:20.800 --> 02:23.640
+So what we did was we ingested PDF documents,
+
+02:23.640 --> 02:25.800
+which were two research papers,
+
+02:25.800 --> 02:28.600
+and then we chunked it by the elements,
+
+02:28.600 --> 02:30.160
+which unstructured has.
+
+02:30.160 --> 02:32.440
+And if you haven't used unstructured before,
+
+02:32.440 --> 02:36.320
+I highly recommend checking it out along with Lama index.
+
+02:36.320 --> 02:40.160
+So what it is doing is it takes the PDF heading.
+
+02:40.160 --> 02:42.240
+So in this example, I have the abstract,
+
+02:42.240 --> 02:43.800
+introduction, and related work.
+
+02:43.800 --> 02:46.680
+So each section will have its own chunk.
+
+02:46.680 --> 02:49.720
+And this is very important when making queries
+
+02:49.720 --> 02:51.840
+that are specific to title.
+
+02:51.840 --> 02:55.280
+So this is that kind of semantic region of searching.
+
+02:55.280 --> 02:57.520
+And maybe you'd have like the abstract property,
+
+02:57.520 --> 02:59.520
+introduction, property, et cetera.
+
+02:59.520 --> 03:01.080
+And this is one way to make sure
+
+03:01.080 --> 03:04.000
+that you have extremely relevant information.
+
+03:04.000 --> 03:06.400
+If you're interested in using unstructured
+
+03:06.400 --> 03:09.960
+with Lama index, so if you start typing in unstructured,
+
+03:09.960 --> 03:13.080
+you can find the file loader here.
+
+03:13.080 --> 03:16.000
+And this is where you can ingest TXT files,
+
+03:16.000 --> 03:18.280
+doc, PowerPoint, JPEG, all of it.
+
+03:18.280 --> 03:21.480
+Then moving on to the Lama index node parser.
+
+03:21.480 --> 03:24.000
+So this is where you would define that chunk size
+
+03:24.000 --> 03:27.160
+that I talked about, and then also the chunk overlap.
+
+03:27.160 --> 03:30.240
+So with this chunk overlap of 20 tokens,
+
+03:30.240 --> 03:33.120
+it is taking the 20 tokens from the previous chunk
+
+03:33.120 --> 03:35.080
+into the following chunk.
+
+03:35.080 --> 03:37.160
+And this is a lane chain documentation
+
+03:37.160 --> 03:39.640
+on where they have their text splitters.
+
+03:39.640 --> 03:42.960
+So they have, I believe, code on how to do this.
+
+03:42.960 --> 03:46.640
+And maybe if you want to split the text by the new lines
+
+03:46.640 --> 03:50.800
+or also the chunk overlap and the chunk size as well.
+
+03:50.800 --> 03:53.080
+And then ending with haystack.
+
+03:53.080 --> 03:55.200
+They have the chunk size,
+
+03:55.200 --> 03:58.240
+and then again the split overlap.
+
+03:58.240 --> 03:59.760
+So you can check that out.
+
+03:59.760 --> 04:03.360
+And then I want to end this video
+
+04:03.360 --> 04:06.960
+with recommending you join the Arise workshop
+
+04:06.960 --> 04:09.920
+that I will be hosting along with Aman from Arise
+
+04:09.920 --> 04:11.600
+and Ronnie from Unstructured.
+
+04:11.640 --> 04:14.400
+We will be exploring the chunking techniques
+
+04:14.400 --> 04:18.120
+and re-ranking for enhancing your retrieval
+
+04:18.120 --> 04:21.040
+and the results in your FAG application.
+
+04:21.040 --> 04:22.840
+I hope you guys are able to join.
+
+04:22.840 --> 04:24.280
+And I'll see you next time.
+
+04:24.280 --> 04:25.120
+Bye.
+
