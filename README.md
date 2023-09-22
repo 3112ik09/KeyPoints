@@ -2,7 +2,7 @@
 * Run cloab notebook if you have OpenAi API key
 * https://drive.google.com/file/d/1u3pX4S5dj_5CdpMy9sIcIe9D7aSPkujA/view?usp=sharing
 ## Description
-Summarizer is a easy way to get summary of a pdf or a Youtube video into your native language.
+Summarizer is a easy way to get summary of a pdf or a Youtube video into your native language. Used Gpt-3.5 as the language Model.
 
 ## Libraries Used
 1. OpenAi -  OpenAI library/module in Python, allowing developers to access and utilize OpenAI's natural language processing capabilities, such as text generation and language understanding, in their code. 
