@@ -1,6 +1,6 @@
 # Key Points Extractor :
 * Run cloab notebook if you have OpenAi API key
-* https://drive.google.com/file/d/1u3pX4S5dj_5CdpMy9sIcIe9D7aSPkujA/view?usp=sharing
+* https://drive.google.com/file/d/1Vue_hD1bf3IuxuAKCez0OvL1Jb_hloaA/view?usp=drive_link
 ## Description
 Summarizer is a easy way to get summary of a pdf or a Youtube video into your native language. Used Gpt-3.5 as the language Model.
 
