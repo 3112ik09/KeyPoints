@@ -1,4 +1,4 @@
-# Summarizer
+# Key Points Extractor :
 * Run cloab notebook if you have OpenAi API key
 * https://drive.google.com/file/d/1u3pX4S5dj_5CdpMy9sIcIe9D7aSPkujA/view?usp=sharing
 ## Description
@@ -14,5 +14,6 @@ Summarizer is a easy way to get summary of a pdf or a Youtube video into your na
 
 1. Begin by converting the content from a PDF or YouTube video into a text file.
 2. Employ prompt engineering to generate an initial English summary.
-3. Translate the generated English summary into your native language.
+3. With help of summary generate key points.
+4. Translate the generated English summary into your native language.
 
